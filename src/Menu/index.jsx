@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import Color from "../Color";
 import { motion, AnimatePresence } from "framer-motion";
 import { BiX } from "react-icons/bi";
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
+import { Link, useLocation } from "react-router-dom";
+
 const MenuScreen = styled(motion.div)`
   position: absolute;
   display: block;
@@ -29,12 +31,13 @@ const MenuList = styled.div`
   flex-direction: column;
 `;
 
-const MenuItem = styled.div`
+const MenuItem = styled(Link)`
   padding: 1rem 0;
   display: flex;
   font-size: 1.5rem;
   font-weight: bold;
   color: ${Color.White};
+  text-decoration: none;
   border-bottom: 1px solid ${Color.White};
 `;
 
@@ -68,7 +71,12 @@ const CloseButton = styled(motion.div)`
 `;
 
 const Menu = ({ isShow, close }) => {
-  console.log(isShow);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isShow) close();
+  }, [location]);
+
   return (
     <AnimatePresence>
       {isShow && (
@@ -86,9 +94,9 @@ const Menu = ({ isShow, close }) => {
               </CloseButton>
             </MenuHeader>
             <MenuList>
-              <MenuItem>Home</MenuItem>
-              <MenuItem>Rank</MenuItem>
-              <MenuItem>About</MenuItem>
+              <MenuItem to="/">Home</MenuItem>
+              <MenuItem to="/rank">Rank</MenuItem>
+              <MenuItem to="/about">About</MenuItem>
             </MenuList>
           </div>
           <MenuCredit>

@@ -7,26 +7,14 @@ const ChartContainer = styled.div`
   margin: 1rem 0;
 `;
 
-const CovidLineChart = ({ data }) => {
+const CovidLineChart = ({ data, isLoading }) => {
+  if (isLoading) return null;
+
   return (
     <ChartContainer>
       <Chart
         type="line"
         datasetIdKey="id"
-        options={{
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  // Shorthand the millions
-                  callback: function (value, index, values) {
-                    return value / 1e6 + "M";
-                  },
-                },
-              },
-            ],
-          },
-        }}
         data={{
           labels: Object.keys(data.cases),
           datasets: [

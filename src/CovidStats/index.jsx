@@ -67,12 +67,7 @@ const Total = styled.div`
 `;
 
 const CountryCard = (props) => {
-  const dayDifference = moment(props.lastUpdate).diff(
-    moment(props.differenceDate),
-    "days"
-  );
-
-  console.log(props);
+  if (!props) return null;
 
   return (
     <Card>
@@ -150,6 +145,20 @@ CountryCard.propTypes = {
   deaths: PropTypes.number,
   recovered: PropTypes.number,
   lastUpdate: PropTypes.instanceOf(Date),
+  todayCases: PropTypes.number,
+  todayDeaths: PropTypes.number,
+  todayRecovered: PropTypes.number,
+};
+
+CountryCard.defaultProps = {
+  country: "",
+  total: 0,
+  deaths: 0,
+  recovered: 0,
+  lastUpdate: new Date(),
+  todayCases: 0,
+  todayDeaths: 0,
+  todayRecovered: 0,
 };
 
 export default CountryCard;
