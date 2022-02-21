@@ -5,5 +5,5 @@ export default {
   Purple2: "#610094",
   White: "#EEEEEE",
   DarkGrey: "#121212",
-  LightGrey: "#E5E5E5",
+  LightGrey: "#C0C0C0",
 };

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BiX } from "react-icons/bi";
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
+import GitHubButton from "react-github-btn";
 
 const MenuScreen = styled(motion.div)`
   position: absolute;
@@ -36,7 +37,7 @@ const MenuItem = styled(Link)`
   display: flex;
   font-size: 1.5rem;
   font-weight: bold;
-  color: ${Color.White};
+  color: ${(props) => (props.isActive ? Color.White : Color.LightGrey)};
   text-decoration: none;
   border-bottom: 1px solid ${Color.White};
 `;
@@ -94,20 +95,26 @@ const Menu = ({ isShow, close }) => {
               </CloseButton>
             </MenuHeader>
             <MenuList>
-              <MenuItem to="/">Home</MenuItem>
-              <MenuItem to="/rank">Rank</MenuItem>
-              <MenuItem to="/about">About</MenuItem>
+              <MenuItem to="/" isActive={location.pathname === "/"}>
+                Home
+              </MenuItem>
+              <MenuItem to="/rank" isActive={location.pathname === "/rank"}>
+                Rank
+              </MenuItem>
+              <MenuItem to="/about" isActive={location.pathname === "/about"}>
+                About
+              </MenuItem>
             </MenuList>
           </div>
           <MenuCredit>
             <p>Created by Gabriel Ivan Setyaputra</p>
-            <MenuCreditIcon href="https://github.com/ivanerror">
+            <MenuCreditIcon href="https://github.com/ivanerror" target="_blank">
               <AiFillGithub />
             </MenuCreditIcon>
-            <MenuCreditIcon href="https://github.com/ivanerror">
+            <MenuCreditIcon href="https://github.com/ivanerror" target="_blank">
               <AiFillLinkedin />
             </MenuCreditIcon>
-            <MenuCreditIcon href="https://github.com/ivanerror">
+            <MenuCreditIcon href="https://github.com/ivanerror" target="_blank">
               <AiFillInstagram />
             </MenuCreditIcon>
           </MenuCredit>
