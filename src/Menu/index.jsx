@@ -11,7 +11,7 @@ const MenuScreen = styled(motion.div)`
   position: absolute;
   display: block;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: ${Color.Black};
   display: flex;

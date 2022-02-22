@@ -6,10 +6,9 @@ import Menu from "../Menu";
 import { useState } from "react";
 
 const AppBar = styled(motion.div)`
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
 `;
 
 const Toolbar = styled.div`

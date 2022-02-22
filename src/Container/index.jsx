@@ -6,6 +6,13 @@ export default styled.div`
   flex-direction: column;
   padding-top: 80px;
   color: ${Color.White};
-  margin : 0 1rem;
+  margin: 0 auto;
+  padding: 0 1rem;
   overflow: auto;
+  padding-top: 1rem;
+  min-height: 100%;
+
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
