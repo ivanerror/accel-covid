@@ -10,7 +10,22 @@ const ButtonWrapper = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: end;
+  align-items: center;
   margin: 1rem;
+`;
+
+const PageDetail = styled.div`
+  font-size: 0.7rem;
+  color: ${Color.LightGrey};
+`;
+
+const RankTitle = styled.h1`
+  font-size: 2rem;
+  font-weight: bold;
+  color: ${Color.White};
+  letter-spacing: 0.1rem;
+  margin: 0 auto;
+  text-align: center;
 `;
 
 const DirectionButton = styled(motion.button)`
@@ -31,6 +46,14 @@ const CovidRank = () => {
     offset: 0,
     showed: 10,
   });
+
+  const nowPage = useMemo(() => {
+    return Math.floor(offset.offset / offset.showed) + 1;
+  }, [offset]);
+
+  const maxPage = useMemo(() => {
+    return Math.ceil(countries.length / offset.showed);
+  }, [countries, offset]);
 
   useEffect(() => {
     axios
@@ -66,8 +89,7 @@ const CovidRank = () => {
 
   return (
     <>
-      <h1>Covid Rank #20</h1>
-
+      <RankTitle>COVID 19 CASES RANK</RankTitle>
       <ChartWrapper>
         <Chart
           type="bar"
@@ -79,7 +101,10 @@ const CovidRank = () => {
             maintainAspectRatio: false,
           }}
           data={{
-            labels: showedCountries.map((country) => country.country),
+            labels: showedCountries.map(
+              (country, index) =>
+                `#${index + 1 + offset.offset} ${country.country}`
+            ),
             datasets: [
               {
                 label: "Cases",
@@ -101,6 +126,9 @@ const CovidRank = () => {
         />
       </ChartWrapper>
       <ButtonWrapper>
+        <PageDetail>
+          page {nowPage} of {maxPage}
+        </PageDetail>
         <DirectionButton
           whileTap={{
             scale: ({ disabled }) => (disabled ? 1 : 0.9),
